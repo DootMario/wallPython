@@ -43,7 +43,7 @@ if __name__ == '__main__':
     else:
         wall = random.choice([f for f in os.listdir(sys.argv[1]) if (f.endswith(".jpg") or f.endswith(".png")) and f != last])
         os.system(f"xwallpaper --zoom {sys.argv[1]}/{wall}")
-        with open(path+"/wallpy.conf", "w") as f:
+        with open(path+"/wallpy.conf", "w+") as f:
             f.write(wall)
 
     exit(0)
