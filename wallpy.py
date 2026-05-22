@@ -1,4 +1,4 @@
-#!/usr/local/bin
+#!/usr/bin/python
 
 import sys
 import os
@@ -16,9 +16,9 @@ if __name__ == '__main__':
             print("Not a file")
             exit(3)
         else:
-            os.system(f"xwallpaper --maximize {sys.argv[1]}/{sys.argv[2]}")
+            os.system(f"xwallpaper --zoom {sys.argv[1]}/{sys.argv[2]}")
 
     else:
         wall = random.choice(os.listdir(sys.argv[1]))
-        os.system(f"xwallpaper --maximize {sys.argv[1]}/{wall}")
+        os.system(f"xwallpaper --zoom {sys.argv[1]}/{wall}")
 
