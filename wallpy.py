@@ -1,15 +1,17 @@
 #!/usr/bin/python
-
+import configparser
 import sys
 import os
 import random
 
 if __name__ == '__main__':
-    path = os.path.dirname(os.path.abspath(__file__))
+    path = "~/.config/wallpy"
+    os.makedirs(path, exist_ok=True)
+    config = os.path.join(path, "wallpy.conf")
 
     last = ""
     try:
-        with open(path+"/wallpy.conf", "r") as f:
+        with open(config, "r") as f:
             last = f.read()
     except FileNotFoundError:
         pass
@@ -37,13 +39,13 @@ if __name__ == '__main__':
             exit(4)
         else:
             os.system(f"xwallpaper --zoom {sys.argv[1]}/{sys.argv[2]}")
-            with open(path+"/wallpy.conf", "w+") as f:
+            with open(config, "w+") as f:
                 f.write(sys.argv[2])
 
     else:
         wall = random.choice([f for f in os.listdir(sys.argv[1]) if (f.endswith(".jpg") or f.endswith(".png")) and f != last])
         os.system(f"xwallpaper --zoom {sys.argv[1]}/{wall}")
-        with open(path+"/wallpy.conf", "w+") as f:
+        with open(config, "w+") as f:
             f.write(wall)
 
     exit(0)
